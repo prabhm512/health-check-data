@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import axios from "axios";
 
 const useStyles = makeStyles({
   table: {
@@ -91,8 +92,24 @@ const rows = [
   )
 ];
 
-export default function BasicTable() {
+const BASE_URL = "https://dummyapi.io/data/api";
+const APP_ID = "60ff4f38edd426410d649747";
+
+export default function BasicTable(props) {
   const classes = useStyles();
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // axios
+    //   .get(`${BASE_URL}/user?limit=20`, { headers: { "app-id": APP_ID } })
+    //   .then(({ data }) => {
+    //     for (let key in data) {
+    //       console.log(data[key]);
+    //     }
+    //   })
+    //   .catch(console.error);
+  }, []);
 
   return (
     <TableContainer component={Paper}>

@@ -5,7 +5,7 @@ import "./styles.css";
 const BASE_URL = "https://dummyapi.io/data/api";
 const APP_ID = "60ff4f38edd426410d649747";
 
-export default function App() {
+export default function GetData(props) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
