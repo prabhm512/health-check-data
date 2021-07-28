@@ -7,7 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import axios from "axios";
+
+import dummyData from "../../db";
 
 const useStyles = makeStyles({
   table: {
@@ -19,96 +20,27 @@ function createData(name, id, firstName, lastName, email) {
   return { name, id, firstName, lastName, email };
 }
 
-const rows = [
-  createData(
-    "60d0fe4f5311236168a109ca",
-    "ms",
-    "Sara",
-    "Andersen",
-    "sara.andersen@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109cb",
-    "miss",
-    "Edita",
-    "Vestering",
-    "edita.vestering@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109cc",
-    "ms",
-    "Adina",
-    "Barbosa",
-    "adina.barbosa@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109d2",
-    "mr",
-    "Evan",
-    "Carlson",
-    "evan.carlson@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109e5",
-    "mr",
-    "Adrian",
-    "Rodriguez",
-    "adrian.rodriguez@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109e9",
-    "mrs",
-    "Cecilie",
-    "Mortensen",
-    "cecilie.mortensen@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109f6",
-    "miss",
-    "Madison",
-    "Ambrose",
-    "madison.ambrose@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109fa",
-    "ms",
-    "Ann",
-    "Mason",
-    "ann.mason@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109fb",
-    "mrs",
-    "Sohan",
-    "Pierre",
-    "sohan.pierre@example.com"
-  ),
-  createData(
-    "60d0fe4f5311236168a109fc",
-    "mr",
-    "Gonzaga",
-    "Ribeiro",
-    "gonzaga.ribeiro@example.com"
-  )
-];
-
-const BASE_URL = "https://dummyapi.io/data/api";
-const APP_ID = "60ff4f38edd426410d649747";
-
-export default function BasicTable(props) {
+export default function BasicTable() {
   const classes = useStyles();
 
-  const [data, setData] = useState(null);
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    // axios
-    //   .get(`${BASE_URL}/user?limit=20`, { headers: { "app-id": APP_ID } })
-    //   .then(({ data }) => {
-    //     for (let key in data) {
-    //       console.log(data[key]);
-    //     }
-    //   })
-    //   .catch(console.error);
+    const tempRows = [];
+
+    for (let i = 0; i < dummyData.length; i++) {
+      tempRows.push(
+        createData(
+          dummyData[i].id,
+          dummyData[i].title,
+          dummyData[i].lastName,
+          dummyData[i].firstName,
+          dummyData[i].email
+        )
+      );
+    }
+
+    setRows(tempRows);
   }, []);
 
   return (
